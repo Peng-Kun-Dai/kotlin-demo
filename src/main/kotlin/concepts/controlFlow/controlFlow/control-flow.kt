@@ -63,8 +63,53 @@ fun hasPrefix(x: Any) = when (x) {
     else -> false
 }
 
+fun compare(a: Int, b: Int) {
+    when {
+        a > b -> "a is greater than b"
+        a < b -> "a is less than b"
+        else -> "a is equal to b"
+    }
+
+    val x = a + b
+    when (x) {
+        0, 1 -> print("x == 0 or x == 1")
+        else -> print("otherwise")
+    }
+
+//    when {
+//        a.isOdd() -> print("x is odd")
+//        b.isEven() -> print("y is even")
+//        else -> print("x+y is odd")
+//    }
+
+}
+
+sealed interface Animal {
+    data class Cat(val mouseHunter: Boolean) : Animal
+    data class Dog(val breed: String) : Animal
+}
+
+fun feedAnimal(animal: Animal) {
+//    when (animal) {
+//        is Animal.Dog -> feedDog()
+//        is Animal.Cat if !animal.mouseHunter
+//        -> feedCat()
+//        else -> println("Unknown animal")
+//    }
+}
+
 fun main() {
     val x = "jayce"
     val y = hasPrefix(x)
     println(y)
+
+    var i = 10
+    while (i > 0) {
+        i--
+        println(i)
+    }
+    do {
+        i++
+    } while (i < 11)
+    println(i)
 }

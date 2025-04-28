@@ -1,11 +1,12 @@
 package main.kotlin.concepts.classAndObj.inheritance
 
+import javax.swing.text.View
+
 class Example //
 
 open class Base(p: Int) {}
 
 class Derived(p: Int) : Base(p) {}
-
 
 open class Shape {
     open val vertexCount: Int = 0
@@ -80,11 +81,13 @@ class FilledRectangle : Rectangle1() {
 
 open class Rectangle2 {
     open fun draw() { /* ... */
+        println("Drawing a rectangle2")
     }
 }
 
 interface Polygon2 {
     fun draw() { /* ... */
+        println("Drawing a polygon2")
     } // 接口的成员默认是 'open' 的
 }
 
@@ -106,6 +109,10 @@ fun main() {
 
 //    Derived1("hello", "world")
 
-    val d = FilledRectangle()
-    d.draw()
+    /*    val d = FilledRectangle()
+        d.draw()
+        println(d.fillColor)*/
+
+    val s = Square()
+    s.draw()
 }

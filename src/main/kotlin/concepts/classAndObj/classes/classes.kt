@@ -7,6 +7,12 @@ class Empty
 
 class InitOrderDemo(name: String) {
     val firstProperty = "First property: $name".also(::println)
+    //.also(::println) //获取对象并打印它
+    //在属性初始化时打印日志：可以方便地跟踪初始化过程
+    //保持表达式形式：可以在单行表达式内完成初始化和副作用操作
+    //不影响原有赋值：.also 会返回原始对象，所以属性最终值不变
+    //    .also 和 .let：都接收 lambda，但 .let 返回 lambda 结果
+    //    .also 和 .apply：.apply 内部用 this 引用对象，.also 用 it
 
     init {
         println("First initializer block that prints $name")
@@ -18,7 +24,6 @@ class InitOrderDemo(name: String) {
         println("Second initializer block that prints ${name.length}")
     }
 }
-
 
 class Customer(name: String) {
     val customerKey = name.toUpperCase()
@@ -47,8 +52,8 @@ class Person3 public constructor(
 }
 
 class Person4(val pets: MutableList<Pet> = mutableListOf())
-class Pet {
-    constructor(owner: Person4) {
+class Pet(owner: Person4) {
+    init {
         owner.pets.add(this)
     }
 }
@@ -57,6 +62,8 @@ class Person5(val name: String) {
     val children: MutableList<Person5> = mutableListOf()
 
     constructor(name: String, parent: Person5) : this(name) {
+        println("constructor name is $name")
+        println(this)
         parent.children.add(this)
     }
 }
@@ -75,22 +82,6 @@ class DontCreateMe private constructor() {}
 
 class Customer2(val name: String = "") {}
 
-
-fun main() {
-//    Person3("jayce", "D", 20)
-//    Person3("")
-
-    Animal("jayce") //success
-    //Polygon()//fail
-    val d = Dog("1")
-    d.speak()
-
-    val v = Car()
-    v.start()
-    v.stop()
-
-    val ca = MyClass
-}
 //特性          |  open          |	abstract
 //------------------------------------------------
 //类实例化       |  可以直接实例化  |   不能直接实例化
@@ -113,9 +104,9 @@ open class Animal(val name: String) {
 }
 
 class Dog(name: String) : Animal(name) {
-//    override fun speak() {
-//        println("汪汪")
-//    }
+    override fun speak() {
+        println("汪汪")
+    }
 }
 
 //abstract用于定义抽象类和抽象成员，表示不完整的实现，必须由子类提供具体实现。
@@ -157,4 +148,19 @@ class MyClass {
         const val CONSTANT = "constant value"
         fun create(): MyClass = MyClass()
     }
+}
+
+fun main() {
+
+    /*    val parent = Person5("jayce")
+        println(parent)
+        val p = Person5("son", parent)
+        println(p)
+        println(parent)
+        println(parent.children[0])*/
+//    println(parent.children[1]) error
+//    val p1 = Person5("yvt", p)
+//    println(p1.children)
+
+
 }

@@ -18,6 +18,10 @@ interface MyInterface {
 class Child : MyInterface {
     override val prop: Int = 42
     override fun bar() {}
+    override fun foo() {
+        super.foo()
+        println(prop)
+    }
 }
 
 interface Named {
@@ -30,24 +34,30 @@ interface Person6 : Named {
     override val name: String get() = "$firstName $lastName"
 }
 
-data class Employee(
-    override val firstName: String,
-    override val lastName: String,
-    val position: Position
-) : Person6
+data class Employee(override val firstName: String, override val lastName: String, val position: Position) : Person6
 
 interface A {
-    fun foo() { println("A") }
+    fun foo() {
+        println("A")
+    }
+
     fun bar()
 }
 
 interface B {
-    fun foo() { println("B") }
-    fun bar() { println("bar") }
+    fun foo() {
+        println("B")
+    }
+
+    fun bar() {
+        println("bar")
+    }
 }
 
 class C : A {
-    override fun bar() { println("bar") }
+    override fun bar() {
+        println("bar")
+    }
 }
 
 class D : A, B {

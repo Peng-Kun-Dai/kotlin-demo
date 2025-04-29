@@ -20,3 +20,8 @@ internal val baz = 6    // 在同一个模块(module)内可以访问
 //protected 表示这个成员的可见度与 private 一样, 但它在子类中也可以访问.
 //internal  表示在 本模块之内, 凡是能够访问到这个类的地方, 同时也能访问到这个类的 internal 成员.
 //public    表示凡是能够访问到这个类的地方, 同时也能访问这个类的 public 成员.
+
+
+fun main() {
+    println()
+}

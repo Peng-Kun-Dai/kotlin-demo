@@ -1,1 +1,0 @@
-package main.kotlin.concepts.classAndObj.objectDeclarations
